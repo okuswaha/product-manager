@@ -20,3 +20,4 @@ caution : dont miss ":" or "-"
 - Define an application class : new productApplication class that extends Application<ProductConfiguration>
 - Define a representation class : new Representaion class
 - Define a resource class : new Resource class
+- Registring a resource : register Resource in Application

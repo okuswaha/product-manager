@@ -1,6 +1,7 @@
 package com.prakash.app;
 
 import com.prakash.config.ProductConfiguration;
+import com.prakash.resource.ProductResource;
 
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
@@ -17,8 +18,11 @@ public class ProductApplication extends Application<ProductConfiguration> {
     }
 
 	@Override
-	public void run(ProductConfiguration arg0, Environment arg1) throws Exception {
-		// TODO Auto-generated method stub
+	public void run(ProductConfiguration configuration, Environment environment) throws Exception {
+		 final ProductResource resource = new ProductResource(
+		            configuration.getMessage(),
+		            configuration.getDefaultText1(),configuration.getDefaultText2());
+		        environment.jersey().register(resource);
 		
 	}
 
