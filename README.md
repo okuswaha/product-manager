@@ -21,3 +21,6 @@ caution : dont miss ":" or "-"
 - Define a representation class : new Representaion class
 - Define a resource class : new Resource class
 - Registring a resource : register Resource in Application
+- Build Application : add maven-shade-plugin and check if the maven-compiler-plugin is set to correct version as java runtime
+- Running an Application : java -jar target/product-manager-1.0-SNAPSHOT.jar server configuration.yml
+- Application Test URL :  http://localhost:8080/product

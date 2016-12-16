@@ -10,7 +10,7 @@ import com.codahale.metrics.annotation.Timed;
 import com.google.common.base.Optional;
 import com.prakash.api.Representation;
 
-@Path("/emp-details")
+@Path("/product")
 @Produces(MediaType.APPLICATION_JSON)
 public class ProductResource {
     private final String message;
