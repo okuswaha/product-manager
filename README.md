@@ -19,3 +19,4 @@ caution : dont miss ":" or "-"
 - Define a configuration class : configuration.yaml in project root , and a class that extends Configuration class - maps properties in yaml file
 - Define an application class : new productApplication class that extends Application<ProductConfiguration>
 - Define a representation class : new Representaion class
+- Define a resource class : new Resource class
