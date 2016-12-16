@@ -14,3 +14,5 @@ C:\MY_GIT\>mvn archetype:generate -DgroupId=com.prakash -DartifactId=product-man
 eractiveMode=false
 
 caution : dont miss ":" or "-"
+
+maven configuration :  add maven dependency --> io.dropwizard:dropwizard-core:1.0.5
