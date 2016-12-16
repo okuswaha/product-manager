@@ -17,3 +17,4 @@ caution : dont miss ":" or "-"
 
 Maven configuration :  add maven dependency --> io.dropwizard:dropwizard-core:1.0.5
 Define a configuration class : configuration.yaml in project root , and a class that extends Configuration class - maps properties in yaml file
+Define an application class : new productApplication class that extends Application<ProductConfiguration>
