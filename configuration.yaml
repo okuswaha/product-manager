@@ -1,3 +1,22 @@
-message : Hello %s! You are learning %s!!
+message: Hello %s! You are learning %s!!
 defaultText1: Prakash
 defaultText2: Dropwizard
+server:
+  applicationContextPath: /om
+  applicationConnectors:
+  - type: http
+    port: 8090
+database:
+  # the name of your JDBC driver
+  driverClass: org.h2.Driver
+  # the username
+  user: sa
+  # the password
+  password: sa
+  # the JDBC URL
+  url: jdbc:h2:target/productmanager;AUTO_SERVER=TRUE;INIT=CREATE SCHEMA IF NOT EXISTS PRODUCTMANAGER;
+  # override health check query for hsqldb
+  # taken from http://javasplitter.blogspot.com/2011/01/keep-alive-query-in-hsqldb.html
+  validationQuery: SELECT 1 FROM DUAL
+  properties:
+    hibernate.dialect: org.hibernate.dialect.H2Dialect

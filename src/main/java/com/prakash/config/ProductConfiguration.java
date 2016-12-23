@@ -1,10 +1,12 @@
 package com.prakash.config;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.dropwizard.Configuration;
+import io.dropwizard.db.DataSourceFactory;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import io.dropwizard.Configuration;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 public class ProductConfiguration extends Configuration {
 	@NotEmpty
@@ -13,6 +15,15 @@ public class ProductConfiguration extends Configuration {
 	private String defaultText1;
 	@NotEmpty
 	private String defaultText2;
+
+	@Valid
+	@NotNull
+	@JsonProperty("database")
+	private DataSourceFactory database = new DataSourceFactory();
+
+	public DataSourceFactory getDataSourceFactory() {
+		return database;
+	}
 	
 	@JsonProperty
 	public String getMessage() {

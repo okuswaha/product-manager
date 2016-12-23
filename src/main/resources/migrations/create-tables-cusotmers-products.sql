@@ -7,7 +7,7 @@ CREATE TABLE CUSTOMERS (
         CITY VARCHAR(30),
         STATE VARCHAR(30),
         POSTAL_CODE INT,
-        PHONE INT,
+        PHONE INT8,
         EMAIL VARCHAR(30)
         );
 

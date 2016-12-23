@@ -4,6 +4,8 @@ import com.prakash.config.ProductConfiguration;
 import com.prakash.resource.ProductResource;
 
 import io.dropwizard.Application;
+import io.dropwizard.db.DataSourceFactory;
+import io.dropwizard.migrations.MigrationsBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 
@@ -14,7 +16,12 @@ public class ProductApplication extends Application<ProductConfiguration> {
 	
 	@Override
     public void initialize(Bootstrap<ProductConfiguration> bootstrap) {
-        // nothing to do yet
+		bootstrap.addBundle(new MigrationsBundle<ProductConfiguration>() {
+			@Override
+			public DataSourceFactory getDataSourceFactory(ProductConfiguration configuration) {
+				return configuration.getDataSourceFactory();
+			}
+		});
     }
 
 	@Override
