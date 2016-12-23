@@ -8,7 +8,11 @@ import javax.ws.rs.core.MediaType;
 
 import com.codahale.metrics.annotation.Timed;
 import com.google.common.base.Optional;
+import com.google.common.collect.Lists;
 import com.prakash.api.Representation;
+import com.prakash.modal.Product;
+
+import java.util.List;
 
 @Path("/product")
 @Produces(MediaType.APPLICATION_JSON)
@@ -24,10 +28,18 @@ public class ProductResource {
 
     @GET
     @Timed
-    public Representation sayHello(@QueryParam("param1") Optional<String> 
-    param1, @QueryParam("param2") Optional<String> param2) {
+    public Representation sayHello(@QueryParam("param1") Optional<String> param1, @QueryParam("param2") Optional<String> param2) {
         final String value = String.format(message, param1.or(defaultText1),
         		param2.or(defaultText2));
         return new Representation(value);
-    }     
+    }
+
+    @GET
+    @Timed
+    @Path("/list")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Product> listProducts() {
+        Product product = new Product();
+        return Lists.newArrayList(product);
+    }
 }
