@@ -14,7 +14,7 @@ database:
   # the password
   password: sa
   # the JDBC URL
-  url: jdbc:h2:target/productmanager;AUTO_SERVER=TRUE;INIT=CREATE SCHEMA IF NOT EXISTS PRODUCTMANAGER;
+  url: jdbc:h2:target/productmanager;AUTO_SERVER=TRUE;INIT=CREATE SCHEMA IF NOT EXISTS PRODUCTMANAGER;DB_CLOSE_DELAY=-1
   # override health check query for hsqldb
   # taken from http://javasplitter.blogspot.com/2011/01/keep-alive-query-in-hsqldb.html
   validationQuery: SELECT 1 FROM DUAL

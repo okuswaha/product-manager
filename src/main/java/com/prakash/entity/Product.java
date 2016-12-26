@@ -1,15 +1,18 @@
 package com.prakash.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
  * Created by okuswaha on 12/23/2016.
  */
-@Entity(name = "PRODUCTS")
-public class Product {
+@Entity
+@Table(name = "PRODUCTS")
+@NamedQueries({
+    @NamedQuery(name = "findAll" , query = "from Product")
+})
+public class Product implements Serializable {
     @Id
     @Column(name = "PRODUCT_ID")
     private int productId;

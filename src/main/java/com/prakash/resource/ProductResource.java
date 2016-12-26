@@ -10,7 +10,10 @@ import com.codahale.metrics.annotation.Timed;
 import com.google.common.base.Optional;
 import com.google.common.collect.Lists;
 import com.prakash.api.Representation;
+import com.prakash.dao.ProductDAO;
 import com.prakash.modal.Product;
+import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
+import io.dropwizard.hibernate.UnitOfWork;
 
 import java.util.List;
 
@@ -20,10 +23,12 @@ public class ProductResource {
     private final String message;
     private final String defaultText1;
     private final String defaultText2;
-    public ProductResource(String message, String defaultText1, String defaultText2) {
+    private ProductDAO productDAO;
+    public ProductResource(String message, String defaultText1, String defaultText2, ProductDAO productDAO) {
         this.message = message;
         this.defaultText1 = defaultText1;
         this.defaultText2 = defaultText2;
+        this.productDAO = productDAO;
     }
 
     @GET
@@ -41,5 +46,15 @@ public class ProductResource {
     public List<Product> listProducts() {
         Product product = new Product();
         return Lists.newArrayList(product);
+    }
+
+    @GET
+    @Timed
+    @UnitOfWork
+    @Path("/products/list")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<com.prakash.entity.Product> findAllProducts() {
+        System.out.println("called");
+        return productDAO.findAll();
     }
 }
