@@ -1,9 +1,6 @@
 package com.prakash.resource;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 import com.codahale.metrics.annotation.Timed;
@@ -19,6 +16,7 @@ import java.util.List;
 
 @Path("/product")
 @Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public class ProductResource {
     private final String message;
     private final String defaultText1;
@@ -42,7 +40,6 @@ public class ProductResource {
     @GET
     @Timed
     @Path("/list")
-    @Produces(MediaType.APPLICATION_JSON)
     public List<Product> listProducts() {
         Product product = new Product();
         return Lists.newArrayList(product);
@@ -52,9 +49,31 @@ public class ProductResource {
     @Timed
     @UnitOfWork
     @Path("/products/list")
-    @Produces(MediaType.APPLICATION_JSON)
     public List<com.prakash.entity.Product> findAllProducts() {
         System.out.println("called");
-        return productDAO.findAll();
+        return productDAO.findAllHql();
+    }
+
+    @GET
+    @Timed
+    @UnitOfWork
+    @Path("/products/{id}")
+    public com.prakash.entity.Product findAllProducts(@PathParam("id") int id) {
+        System.out.println("product called with id : "+ id);
+        return productDAO.getProduct(id);
+    }
+
+    @POST
+    @UnitOfWork
+    @Path("/products")
+    public void addProduct(com.prakash.entity.Product product){
+        productDAO.insert(product);
+    }
+
+    @DELETE
+    @UnitOfWork
+    @Path("/products/{id}")
+    public void deleteProduct(@PathParam("id") int id){
+        productDAO.delete(id);
     }
 }

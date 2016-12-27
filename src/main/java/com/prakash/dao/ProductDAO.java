@@ -2,6 +2,7 @@ package com.prakash.dao;
 
 import com.prakash.entity.Product;
 import io.dropwizard.hibernate.AbstractDAO;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 
 import java.util.List;
@@ -19,4 +20,25 @@ public class ProductDAO extends AbstractDAO<Product> {
         System.err.println("size of products : "+ products.size());
         return products ;
     }
+
+    public List<Product> findAllHql() {
+        Query query = currentSession().createQuery("from Product");
+        List<Product> products =  query.list();
+        return products;
+    }
+
+    public Product getProduct(Integer id) {
+        Query query = currentSession().createQuery("from Product where id = :id");
+        query.setParameter("id",new Integer(id));
+        List<Product> products = query.list();
+        return products.get(0);
+    }
+    public void delete(int id){
+        Query query = currentSession().createQuery("delete from Product where  id = :id");
+        query.setParameter("id", new Integer(id));
+        query.executeUpdate();
+    }
+     public void insert(Product product){
+        currentSession().save(product);
+     }
 }
