@@ -1,8 +1,10 @@
 package com.prakash.app;
 
 import com.prakash.config.ProductConfiguration;
+import com.prakash.dao.CustomerDAO;
 import com.prakash.dao.ProductDAO;
-import com.prakash.entity.Product;
+import com.prakash.entity.*;
+import com.prakash.resource.CustomerResource;
 import com.prakash.resource.ProductResource;
 
 import io.dropwizard.Application;
@@ -14,7 +16,7 @@ import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 
 public class ProductApplication extends Application<ProductConfiguration> {
-	private final HibernateBundle<ProductConfiguration> hibernateBundle = new HibernateBundle<ProductConfiguration>(Product.class) {
+	private final HibernateBundle<ProductConfiguration> hibernateBundle = new HibernateBundle<ProductConfiguration>(Product.class, ProductCategory.class, Customer.class, Order.class, OrderDetails.class) {
 		@Override
 		public PooledDataSourceFactory getDataSourceFactory(ProductConfiguration productConfiguration) {
 			return productConfiguration.getDataSourceFactory();
@@ -38,11 +40,12 @@ public class ProductApplication extends Application<ProductConfiguration> {
 	@Override
 	public void run(ProductConfiguration configuration, Environment environment) throws Exception {
 		final ProductDAO productDAO = new ProductDAO(hibernateBundle.getSessionFactory());
-		 final ProductResource resource = new ProductResource(
-		            configuration.getMessage(),
-		            configuration.getDefaultText1(),configuration.getDefaultText2(),
+		final CustomerDAO customerDAO = new CustomerDAO(hibernateBundle.getSessionFactory());
+		 final ProductResource productResource = new ProductResource(configuration.getMessage(), configuration.getDefaultText1(),configuration.getDefaultText2(),
 				 productDAO);
-		        environment.jersey().register(resource);
+		 final CustomerResource customerResource = new CustomerResource(customerDAO);
+		        environment.jersey().register(productResource);
+				environment.jersey().register(customerResource);
 		
 	}
 

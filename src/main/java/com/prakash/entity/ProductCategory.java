@@ -3,12 +3,13 @@ package com.prakash.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 /**
  * Created by okuswaha on 12/23/2016.
  */
 @Entity(name = "PRODUCT_CATEGORY")
-public class ProductCategory {
+public class ProductCategory implements Serializable{
     @Id
     @Column(name = "CATEGORY_ID")
     private int categoryId;

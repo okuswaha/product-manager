@@ -3,12 +3,16 @@ package com.prakash.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import java.io.Serializable;
+
 
 /**
  * Created by okuswaha on 12/23/2016.
  */
-@Entity(name = "CUSTOMER")
-public class Customer {
+@Entity
+@Table(name = "CUSTOMERS")
+public class Customer implements Serializable{
     @Id
     @Column(name = "CUSTOMER_ID")
     private int customerId;

@@ -4,12 +4,14 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.Date;
+import java.io.Serializable;
+
 
 /**
  * Created by okuswaha on 12/23/2016.
  */
 @Entity(name = "ORDERS")
-public class Order {
+public class Order implements Serializable{
     @Id
     @Column(name = "ORDER_ID")
     private int orderId;

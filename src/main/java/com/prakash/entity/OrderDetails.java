@@ -3,15 +3,15 @@ package com.prakash.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
  * Created by okuswaha on 12/23/2016.
  */
 @Entity(name = "ORDER_DETAILS")
-public class OrderDetails {
+public class OrderDetails implements Serializable {
     @Id
-    @Column(name = "ORDER_ID")
     private int orderId;
     @Column(name = "PRODUCT_ID")
     private int productId;
