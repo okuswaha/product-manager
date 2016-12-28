@@ -1,11 +1,9 @@
 package com.prakash.app;
 
 import com.prakash.config.ProductConfiguration;
-import com.prakash.dao.CustomerDAO;
-import com.prakash.dao.ProductDAO;
+import com.prakash.dao.*;
 import com.prakash.entity.*;
-import com.prakash.resource.CustomerResource;
-import com.prakash.resource.ProductResource;
+import com.prakash.resource.*;
 
 import io.dropwizard.Application;
 import io.dropwizard.db.DataSourceFactory;
@@ -41,11 +39,21 @@ public class ProductApplication extends Application<ProductConfiguration> {
 	public void run(ProductConfiguration configuration, Environment environment) throws Exception {
 		final ProductDAO productDAO = new ProductDAO(hibernateBundle.getSessionFactory());
 		final CustomerDAO customerDAO = new CustomerDAO(hibernateBundle.getSessionFactory());
-		 final ProductResource productResource = new ProductResource(configuration.getMessage(), configuration.getDefaultText1(),configuration.getDefaultText2(),
+		final ProductCategoryDAO productCategoryDAO = new ProductCategoryDAO(hibernateBundle.getSessionFactory());
+		final OrderDAO orderDAO = new OrderDAO(hibernateBundle.getSessionFactory());
+		final OrderDetailsDAO orderDetailsDAO= new OrderDetailsDAO(hibernateBundle.getSessionFactory());
+		final ProductResource productResource = new ProductResource(configuration.getMessage(), configuration.getDefaultText1(),configuration.getDefaultText2(),
 				 productDAO);
-		 final CustomerResource customerResource = new CustomerResource(customerDAO);
-		        environment.jersey().register(productResource);
-				environment.jersey().register(customerResource);
+		final CustomerResource customerResource = new CustomerResource(customerDAO);
+		final OrderResource orderResource = new OrderResource(orderDAO);
+		final OrderDetailsResource orderDetailsResource = new OrderDetailsResource(orderDetailsDAO);
+		final ProductCategoryResource productCategoryResource = new ProductCategoryResource(productCategoryDAO);
+
+		environment.jersey().register(productResource);
+		environment.jersey().register(customerResource);
+		environment.jersey().register(orderResource);
+		environment.jersey().register(orderDetailsResource);
+		environment.jersey().register(productCategoryResource);
 		
 	}
 

@@ -3,6 +3,7 @@ package com.prakash.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
 import java.io.Serializable;
 
@@ -10,7 +11,8 @@ import java.io.Serializable;
 /**
  * Created by okuswaha on 12/23/2016.
  */
-@Entity(name = "ORDERS")
+@Entity
+@Table(name = "ORDERS")
 public class Order implements Serializable{
     @Id
     @Column(name = "ORDER_ID")
