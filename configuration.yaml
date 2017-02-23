@@ -5,7 +5,7 @@ server:
   applicationContextPath: /om
   applicationConnectors:
   - type: http
-    port: 8090
+    port: 80
 database:
   # the name of your JDBC driver
   driverClass: org.h2.Driver
