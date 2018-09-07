@@ -5,7 +5,7 @@ server:
   applicationContextPath: /om
   applicationConnectors:
   - type: http
-    port: 80
+    port: 9080
 database:
   # the name of your JDBC driver
   driverClass: org.h2.Driver
@@ -21,4 +21,6 @@ database:
   properties:
     hibernate.dialect: org.hibernate.dialect.H2Dialect
     hibernate.default_schema: PRODUCTMANAGER
+swagger:
+  resourcePackage: com.prakash.resource
 

@@ -1,4 +1,4 @@
-package com.prakash.app;
+package com.prakash;
 
 import com.prakash.config.ProductConfiguration;
 import com.prakash.dao.*;
@@ -11,6 +11,8 @@ import io.dropwizard.hibernate.HibernateBundle;
 import io.dropwizard.migrations.MigrationsBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
+import io.federecio.dropwizard.swagger.SwaggerBundle;
+import io.federecio.dropwizard.swagger.SwaggerBundleConfiguration;
 import org.eclipse.jetty.servlets.CrossOriginFilter;
 
 import javax.servlet.DispatcherType;
@@ -37,6 +39,12 @@ public class ProductApplication extends Application<ProductConfiguration> {
 			}
 		});
 		bootstrap.addBundle(hibernateBundle);
+		bootstrap.addBundle(new SwaggerBundle<ProductConfiguration>() {
+			@Override
+			protected SwaggerBundleConfiguration getSwaggerBundleConfiguration(ProductConfiguration configuration) {
+				return configuration.swaggerBundleConfiguration;
+			}
+		});
     }
 
 	@Override
@@ -70,5 +78,6 @@ public class ProductApplication extends Application<ProductConfiguration> {
 		// Add URL mapping
 		cors.addMappingForUrlPatterns(EnumSet.allOf(DispatcherType.class), true, "/*");
 	}
+
 
 }

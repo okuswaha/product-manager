@@ -6,12 +6,15 @@ import com.prakash.dao.OrderDAO;
 import com.prakash.entity.Customer;
 import com.prakash.entity.Order;
 import io.dropwizard.hibernate.UnitOfWork;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 @Path("/order")
+@Api(value = "Order Resource")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class OrderResource {
@@ -24,6 +27,7 @@ public class OrderResource {
     @Timed
     @UnitOfWork
     @Path("/list")
+    @ApiOperation(value = "get list of order")
     public List<Order> findAll() {
         return orderDAO.findAll();
     }
@@ -32,12 +36,14 @@ public class OrderResource {
     @Timed
     @UnitOfWork
     @Path("/{id}")
+    @ApiOperation(value = "get order by id")
     public Order find(@PathParam("id") int id) {
         return orderDAO.find(id);
     }
 
     @POST
     @UnitOfWork
+    @ApiOperation(value = "insert an order")
     public void insert(Order order){
         orderDAO.insert(order);
     }
@@ -45,6 +51,7 @@ public class OrderResource {
     @DELETE
     @UnitOfWork
     @Path("/{id}")
+    @ApiOperation(value = "delete an order")
     public void delete(@PathParam("id") int id){
         orderDAO.delete(id);
     }

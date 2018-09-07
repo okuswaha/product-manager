@@ -3,6 +3,7 @@ package com.prakash.config;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.dropwizard.Configuration;
 import io.dropwizard.db.DataSourceFactory;
+import io.federecio.dropwizard.swagger.SwaggerBundleConfiguration;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.Valid;
@@ -15,6 +16,9 @@ public class ProductConfiguration extends Configuration {
 	private String defaultText1;
 	@NotEmpty
 	private String defaultText2;
+
+	@JsonProperty("swagger")
+	public SwaggerBundleConfiguration swaggerBundleConfiguration;
 
 	@Valid
 	@NotNull
@@ -53,5 +57,21 @@ public class ProductConfiguration extends Configuration {
 	@JsonProperty
 	public void setDefaultText2(String defaultText2) {
 		this.defaultText2 = defaultText2;
-	}   
+	}
+
+	public SwaggerBundleConfiguration getSwaggerBundleConfiguration() {
+		return swaggerBundleConfiguration;
+	}
+
+	public void setSwaggerBundleConfiguration(SwaggerBundleConfiguration swaggerBundleConfiguration) {
+		this.swaggerBundleConfiguration = swaggerBundleConfiguration;
+	}
+
+	public DataSourceFactory getDatabase() {
+		return database;
+	}
+
+	public void setDatabase(DataSourceFactory database) {
+		this.database = database;
+	}
 }
