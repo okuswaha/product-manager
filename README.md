@@ -24,3 +24,33 @@ caution : dont miss ":" or "-"
 - Build Application : add maven-shade-plugin and check if the maven-compiler-plugin is set to correct version as java runtime
 - Running an Application : java -jar target/product-manager-1.0-SNAPSHOT.jar server configuration.yml
 - Application Test URL :  http://localhost:8080/product
+
+How to use Jenkinsfile
+
+How to use Dockerfile
+cd to directoy with Dockerfile
+run the following command 
+>docker build -t "product-manager:1.0" .
+this will build and image 
+REPOSITORY           TAG       IMAGE ID       CREATED             SIZE
+product-manager      1.0       212f6fdfef21   48 seconds ago      671MB
+
+now to run :
+
+docker debugging attach shell
+>docker run -it product-manager:1.0 /bin/sh
+
+run 
+>docker run product-manager:1.0
+
+attach a tty 
+>docker exec -it wonderful_tharp /bin/sh
+
+kill container 
+docker kill d44eccd7fa9b
+
+docker expose port 
+>docker run -d -p 9081:9081 product-manager:1.0
+>
+this error mean problem with line ending
+standard_init_linux.go:211: exec user process caused "no such file or directory"
