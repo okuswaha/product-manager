@@ -40,4 +40,9 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 fabric.properties
-/target/
+/target/**
+product-manager.iml
+configuration-temp.yaml
+product-manager-verbose-class.log
+product-manager.iml
+.configuration-temp.yaml.swp
