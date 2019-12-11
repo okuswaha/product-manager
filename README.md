@@ -54,3 +54,10 @@ docker expose port
 >
 this error mean problem with line ending
 standard_init_linux.go:211: exec user process caused "no such file or directory"
+
+create a repsoitory in dockerhub
+tag docker image with the name of the repo
+>docker tag product-manager:1.0 okuswaha/product-manager:1.0
+
+>docker login -u username -p password
+>docker push okuswaha/product-manager:1.0
