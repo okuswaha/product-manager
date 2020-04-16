@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: apps
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: apps
+  name: product-manager
+  labels:
+    app: product-manager
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: product-manager
+  template:
+    metadata:
+      labels:
+        app: product-manager
+    spec:
+      containers:
+        - name: product-manager
+          image: product-manager:1.0
+          ports:
+            - containerPort: 9081
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: product-manager
+  namespace: apps
+spec:
+  selector:
+    app: product-manager
+  ports:
+    - protocol: TCP
+      port: 9081
+      targetPort: 9081
