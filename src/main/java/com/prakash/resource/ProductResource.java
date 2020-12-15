@@ -21,23 +21,9 @@ import java.util.List;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class ProductResource {
-    private final String message;
-    private final String defaultText1;
-    private final String defaultText2;
     private ProductDAO productDAO;
-    public ProductResource(String message, String defaultText1, String defaultText2, ProductDAO productDAO) {
-        this.message = message;
-        this.defaultText1 = defaultText1;
-        this.defaultText2 = defaultText2;
+    public ProductResource(ProductDAO productDAO) {
         this.productDAO = productDAO;
-    }
-
-    @GET
-    @Timed
-    public Representation sayHello(@QueryParam("param1") Optional<String> param1, @QueryParam("param2") Optional<String> param2) {
-        final String value = String.format(message, param1.or(defaultText1),
-        		param2.or(defaultText2));
-        return new Representation(value);
     }
 
     @GET

@@ -1,6 +1,3 @@
-message: Hello %s! You are learning %s!!
-defaultText1: Prakash
-defaultText2: Dropwizard
 server:
   applicationContextPath: /om
   applicationConnectors:
