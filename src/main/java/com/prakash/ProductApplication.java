@@ -54,8 +54,7 @@ public class ProductApplication extends Application<ProductConfiguration> {
 		final ProductCategoryDAO productCategoryDAO = new ProductCategoryDAO(hibernateBundle.getSessionFactory());
 		final OrderDAO orderDAO = new OrderDAO(hibernateBundle.getSessionFactory());
 		final OrderDetailsDAO orderDetailsDAO= new OrderDetailsDAO(hibernateBundle.getSessionFactory());
-		final ProductResource productResource = new ProductResource(configuration.getMessage(), configuration.getDefaultText1(),configuration.getDefaultText2(),
-				 productDAO);
+		final ProductResource productResource = new ProductResource(productDAO);
 		final CustomerResource customerResource = new CustomerResource(customerDAO);
 		final OrderResource orderResource = new OrderResource(orderDAO);
 		final OrderDetailsResource orderDetailsResource = new OrderDetailsResource(orderDetailsDAO);
