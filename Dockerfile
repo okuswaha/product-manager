@@ -1,4 +1,4 @@
-FROM java:8
+FROM openjdk:8
 
 COPY src/main/config/startServer.sh usr/deploy/startServer.sh
 COPY src/main/config/configuration.yaml /usr/deploy/config.yml

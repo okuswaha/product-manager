@@ -1,3 +1,3 @@
-#!/bin/sh
+#!/bin/bash
 echo 'Run server'
-exec java -jar product-manager.jar server config.yml
+java -jar product-manager.jar db migrate config.yml; java -jar product-manager.jar server config.yml

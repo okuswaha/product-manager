@@ -10,8 +10,6 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 public class ProductConfiguration extends Configuration {
-	@NotEmpty
-	private String message;
 
 	@JsonProperty("swagger")
 	public SwaggerBundleConfiguration swaggerBundleConfiguration;
@@ -23,16 +21,6 @@ public class ProductConfiguration extends Configuration {
 
 	public DataSourceFactory getDataSourceFactory() {
 		return database;
-	}
-	
-	@JsonProperty
-	public String getMessage() {
-		return message;
-	}
-	
-	@JsonProperty
-	public void setMessage(String message) {
-		this.message = message;
 	}
 
 	public SwaggerBundleConfiguration getSwaggerBundleConfiguration() {
